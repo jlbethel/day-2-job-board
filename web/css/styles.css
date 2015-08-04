@@ -1,0 +1,15 @@
+body {
+  background-color: #7E8C95;
+}
+h1 {
+  text-align: center;
+}
+.container {
+  max-width: 800px;
+}
+.box {
+  background-color: #B9C0DA;
+  padding: 30px;
+  border-radius: 20px;
+  color: #63585E;
+}

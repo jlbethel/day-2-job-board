@@ -10,6 +10,7 @@
             <html>
             <head>
               <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css'>
+              <link rel='stylesheet' href='css/styles.css'>
               <title>Job Board</title>
             </head>
             <body>
@@ -36,7 +37,7 @@
                             <label for='email'>Enter your email:</label>
                             <input id='email' name='email' class='form-control' type='text'>
                         </div>
-                        <button type='submit' class='btn-success'>Submit</button>
+                        <button type='submit' class='btn-primary'>Submit</button>
                     </form>
                 </div>
             </body>
@@ -50,23 +51,24 @@
         $new_contact = new Contact($_GET["name"], $_GET["phone_number"], $_GET["email"]);
         $output = "";
         $output = $output .
-            "<p>Title: " . $new_job->getTitle() . "</p>
+            "<div class='box'><p>Title: " . $new_job->getTitle() . "</p>
             <p> Description: " . $new_job->getDescription() . "</p>
             <p> Name: " . $new_contact->getName() . "</p>
             <p> Phone Number: " . $new_contact->getPhoneNumber() . "</p>
-            <p> Email: " . $new_contact->getEmail() . "</p>";
+            <p> Email: " . $new_contact->getEmail() . "</div></p>";
 
         return "
             <!DOCTYPE html>
             <html>
             <head>
                 <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css'>
+                <link rel='stylesheet' href='css/styles.css'>
                 <title>Job Posted!</title>
             </head>
             <body>
                 <div class='container'>
                     <h1>Your job has been posted!</h1>
-                    <p>The job details are:</p>
+                    <h3>The job details are:</h3>
                     <p>$output</p>
                 </div>
             </body>
