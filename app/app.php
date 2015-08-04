@@ -35,6 +35,34 @@
             ";
     });
 
+
+    $app->get("/job", function() {
+        $new_job = new JobOpening($_GET["title"], $_GET["description"], $_GET["contact"]);
+        $output = "";
+        $output = $output .
+            "<p>Title: " . $new_job->getTitle() . "</p>
+            <p> Description: " . $new_job->getDescription() . "</p>
+            <p> Contact info: " . $new_job->getContact() . "</p>";
+
+        return "
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css'>
+                <title>Job Posted!</title>
+            </head>
+            <body>
+                <div class='container'>
+                    <h1>Your job has been posted!</h1>
+                    <p>The job details are:</p>
+                    <p>$output</p>
+                </div>
+            </body>
+            </html>
+        ";
+
+    });
+
     return $app;
 
 ?>
