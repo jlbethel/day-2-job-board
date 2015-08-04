@@ -1,6 +1,7 @@
 <?php
     require_once __DIR__.'/../vendor/autoload.php';
     require_once __DIR__.'/../src/JobOpening.php';
+    require_once __DIR__.'/../src/Contact.php';
 
     $app = new Silex\Application();
     $app->get("/", function() {
@@ -24,8 +25,16 @@
                             <input id='description' name='description' class='form-control' type='text'>
                         </div>
                         <div class='form-group'>
-                            <label for='contact'>Enter contact information:</label>
-                            <input id='contact' name='contact' class='form-control' type='text'>
+                            <label for='name'>Enter your name:</label>
+                            <input id='name' name='name' class='form-control' type='text'>
+                        </div>
+                        <div class='form-group'>
+                            <label for='phone_number'>Enter phone number: </label>
+                            <input id='phone_number' name='phone_number' class='form-control' type='text'>
+                        </div>
+                        <div class='form-group'>
+                            <label for='email'>Enter your email:</label>
+                            <input id='email' name='email' class='form-control' type='text'>
                         </div>
                         <button type='submit' class='btn-success'>Submit</button>
                     </form>
@@ -37,12 +46,15 @@
 
 
     $app->get("/job", function() {
-        $new_job = new JobOpening($_GET["title"], $_GET["description"], $_GET["contact"]);
+        $new_job = new JobOpening($_GET["title"], $_GET["description"]);
+        $new_contact = new Contact($_GET["name"], $_GET["phone_number"], $_GET["email"]);
         $output = "";
         $output = $output .
             "<p>Title: " . $new_job->getTitle() . "</p>
             <p> Description: " . $new_job->getDescription() . "</p>
-            <p> Contact info: " . $new_job->getContact() . "</p>";
+            <p> Name: " . $new_contact->getName() . "</p>
+            <p> Phone Number: " . $new_contact->getPhoneNumber() . "</p>
+            <p> Email: " . $new_contact->getEmail() . "</p>";
 
         return "
             <!DOCTYPE html>
